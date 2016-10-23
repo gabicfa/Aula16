@@ -128,6 +128,18 @@ public class TarefaDAO {
             stmt.close();
         } catch(SQLException e) {System.out.println(e);}
     }
+    
+    public void finalizaTarefa(Tarefa tarefa){
+    	try{
+            String sql = "UPDATE Tarefas SET finalizado=? WHERE id=?";
+            PreparedStatement stmt = connection.prepareStatement(sql);  		
+            stmt.setBoolean(1, true);
+            stmt.setLong(2, tarefa.getId());
+            stmt.executeUpdate();
+            stmt.close();
+        } catch(SQLException e) {System.out.println(e);}
+    }
+    
 
     public void close() {
         try { connection.close();}

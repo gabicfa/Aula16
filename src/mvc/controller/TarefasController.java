@@ -14,8 +14,8 @@ public class TarefasController {
 
     @RequestMapping("/")
     public String execute() {
-        System.out.println("Lógica do MVC");
-        return "info";
+//        System.out.println("Lógica do MVC");
+        return "index";
     }
     
     @RequestMapping("criaTarefa")
@@ -60,6 +60,13 @@ public class TarefasController {
            TarefaDAO dao = new TarefaDAO();
            dao.altera(tarefa);
            return "redirect:listaTarefas";
+    }
+    
+    @RequestMapping("finalizaTarefa")
+    public String finaliza(Tarefa tarefa) {
+        TarefaDAO dao = new TarefaDAO();
+        dao.finalizaTarefa(tarefa);
+        return "redirect:listaTarefas";
     }
     
 
