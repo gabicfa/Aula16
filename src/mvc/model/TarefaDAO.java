@@ -131,10 +131,11 @@ public class TarefaDAO {
     
     public void finalizaTarefa(Tarefa tarefa){
     	try{
-            String sql = "UPDATE Tarefas SET finalizado=? WHERE id=?";
-            PreparedStatement stmt = connection.prepareStatement(sql);  		
+            String sql = "UPDATE Tarefas SET finalizado=?, dataFinalizacao=? " +  "WHERE id=?";
+            PreparedStatement stmt = connection.prepareStatement(sql);  	
             stmt.setBoolean(1, true);
-            stmt.setLong(2, tarefa.getId());
+            stmt.setDate(2, new Date(Calendar.getInstance().getTimeInMillis()));
+            stmt.setLong(3, tarefa.getId());
             stmt.executeUpdate();
             stmt.close();
         } catch(SQLException e) {System.out.println(e);}
